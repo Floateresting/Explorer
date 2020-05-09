@@ -21,7 +21,7 @@
     <NavigationPage.TitleView>
         <ScrollView x:Name="AddressBarScrollView" Orientation="Horizontal"
                     HorizontalScrollBarVisibility="Never" BackgroundColor="{DynamicResource NavigationPrimary}">
-            <StackLayout x:Name="AddressBarStackLayout" Spacing="0" 
+            <StackLayout x:Name="AddressBarStackLayout" Spacing="0" SizeChanged="OnStackLayoutSizeChanged"
                          BindableLayout.ItemsSource="{Binding AddressBarItems}" 
                          Orientation="Horizontal" Padding="0,0,0,0">
                 <BindableLayout.ItemTemplate>
@@ -66,14 +66,14 @@
                                                 <VisualState x:Name="Normal">
                                                     <VisualState.Setters>
                                                         <Setter Property="BackgroundColor"
-                                        Value="{DynamicResource FileListBackgroundDefault}"/>
+                                                            Value="{DynamicResource FileListBackgroundDefault}"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
 
                                                 <VisualState x:Name="Selected">
                                                     <VisualState.Setters>
                                                         <Setter Property="BackgroundColor"
-                                        Value="{DynamicResource FileListBackgroundSelected}" />
+                                                            Value="{DynamicResource FileListBackgroundSelected}" />
                                                     </VisualState.Setters>
                                                 </VisualState>
                                             </VisualStateGroup>
@@ -91,8 +91,8 @@
                                    LineBreakMode="NoWrap">
                             </Label>
                             <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding TappedCommand}"
-                                                          CommandParameter="{Binding .FullPath}"/>
+                                <TapGestureRecognizer Command="{Binding TappedCommand}"
+                                                      CommandParameter="{Binding .FullPath}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>

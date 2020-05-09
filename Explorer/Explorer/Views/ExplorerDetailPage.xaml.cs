@@ -12,18 +12,18 @@ namespace Explorer.Views {
 
         public ExplorerDetailPage() {
             this.BindingContext = new ExplorerDetailViewModel(Root) { Navigation = this.Navigation };
-            this.AddressBarStackLayout.SizeChanged += (object sender, EventArgs e) => {
-                this.AddressBarScrollView.ScrollToAsync(
-                    this.AddressBarStackLayout,
-                    ScrollToPosition.End,
-                    true);
-            };
 
             this.InitializeComponent();
         }
 
+
         #endregion
 
-
+        private void OnStackLayoutSizeChanged(object sender, EventArgs e) {
+            this.AddressBarScrollView.ScrollToAsync(
+                this.AddressBarStackLayout,
+                ScrollToPosition.End,
+                true);
+        }
     }
 }
