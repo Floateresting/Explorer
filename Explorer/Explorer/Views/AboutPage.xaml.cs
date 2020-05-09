@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Explorer.Views {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -9,7 +7,7 @@ namespace Explorer.Views {
     [DesignTimeVisible(false)]
     public partial class AboutPage : ContentPage {
         public AboutPage() {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

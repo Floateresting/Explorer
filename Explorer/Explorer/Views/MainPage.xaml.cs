@@ -1,47 +1,47 @@
-﻿using System;
+﻿using Explorer.CustomControls;
+using Explorer.Models;
+using Explorer.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using Explorer.Models;
 
 namespace Explorer.Views {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MainPage : MasterDetailPage {
-        Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+
+        private readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
         public MainPage() {
-            InitializeComponent();
-
-            MasterBehavior = MasterBehavior.Popover;
-
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            this.InitializeComponent();
+            //this.MasterBehavior = MasterBehavior.Popover;
+            this.MasterBehavior = MasterBehavior.Split;
+            this.MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)this.Detail);
         }
 
-        public async Task NavigateFromMenu(int id) {
-            if(!MenuPages.ContainsKey(id)) {
+        public void NavigateFromMenu(int id) {
+            if(!this.MenuPages.ContainsKey(id)) {
                 switch(id) {
                     case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        this.MenuPages.Add(id, new CustomNavigationPage(new ExplorerDetailPage()));
                         break;
                     case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        this.MenuPages.Add(id, new CustomNavigationPage(new AboutPage()));
                         break;
                 }
             }
 
-            var newPage = MenuPages[id];
+            NavigationPage newPage = this.MenuPages[id];
 
-            if(newPage != null && Detail != newPage) {
-                Detail = newPage;
+            if(newPage != null && this.Detail != newPage) {
+                this.Detail = newPage;
 
-                if(Device.RuntimePlatform == Device.Android)
-                    await Task.Delay(100);
+                //if(Device.RuntimePlatform == Device.Android) {
+                //    await Task.Delay(100);
+                //}
 
-                IsPresented = false;
+                this.IsPresented = false;
             }
         }
     }

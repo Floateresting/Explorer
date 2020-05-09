@@ -3,17 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Explorer.CustomControls"
              mc:Ignorable="d"
              x:Class="Explorer.App">
 
     <Application.Resources>
         <ResourceDictionary>
-            <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="BarTextColor" Value="White" />
+            <Style TargetType="controls:CustomNavigationPage">
+                <Setter Property="BackgroundColor" Value="{DynamicResource NavigationPrimary}"/>
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationPrimary}"/>
+                <Setter Property="BarTextColor" Value="White"/>
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TextColorDefault}"/>
+            </Style>
+
+            <Color x:Key="FileListBackgroundSelected">#777777</Color>
+            <Color x:Key="NavigationPrimary">#191919</Color>
+            <Color x:Key="TextColorDefault">White</Color>
+            <Color x:Key="FileListBackgroundDefault">#202020</Color>
         </ResourceDictionary>
     </Application.Resources>
     

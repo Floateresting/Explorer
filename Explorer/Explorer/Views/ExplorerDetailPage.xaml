@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Explorer"
+             mc:Ignorable="d" Visual="Material"
+            xmlns:controls="clr-namespace:Explorer.CustomControls"
+             
+             NavigationPage.HasBackButton="False"
+             x:Class="Explorer.Views.ExplorerDetailPage">
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+
+    <!--#region Toolbar -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="H" Order="Secondary"/>
+        <ToolbarItem Text="o" Order="Secondary"/>
+        <ToolbarItem Text="A" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    <NavigationPage.TitleView>
+        <ScrollView x:Name="AddressBarScrollView" Orientation="Horizontal"
+                    HorizontalScrollBarVisibility="Never" BackgroundColor="{DynamicResource NavigationPrimary}">
+            <StackLayout x:Name="AddressBarStackLayout" Spacing="0" 
+                         BindableLayout.ItemsSource="{Binding AddressBarItems}" 
+                         Orientation="Horizontal" Padding="0,0,0,0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Text}" Padding="0,0,0,0"
+                               BackgroundColor="{DynamicResource NavigationPrimary}"
+                               FontSize="Title">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding TappedCommand}"
+                                                      CommandParameter="{Binding .FullPath}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <!--<local:CustomButton Text="{Binding Text}" 
+                            BackgroundColor="{DynamicResource NavigationPrimary}"
+                            TextColor="{DynamicResource TextColorDefault}"
+                            Clicked="OnToolbarButtonCilcked"
+                            InputTransparent="{Binding InputTransparent}"
+                            BorderWidth="0" FontSize="Title"/>-->
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+    </NavigationPage.TitleView>
+    <!--#endregion-->
+
+    <ContentPage.Content>
+        <!--#region FileList-->
+        <Grid BackgroundColor="{DynamicResource FileListBackgroundDefault}"
+              BindingContext="{Binding FileList}">
+            <!--<Label Text="This "/>-->
+            <CollectionView ItemsSource="{Binding Children,Mode=OneWay}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" Orientation="Horizontal">
+                            <!--#region Style -->
+                            <StackLayout.Style>
+                                <Style TargetType="StackLayout">
+                                    <Setter Property="VisualStateManager.VisualStateGroups">
+                                        <VisualStateGroupList>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor"
+                                        Value="{DynamicResource FileListBackgroundDefault}"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <VisualState x:Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor"
+                                        Value="{DynamicResource FileListBackgroundSelected}" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateGroupList>
+                                    </Setter>
+                                </Style>
+                            </StackLayout.Style>
+                            <!--#endregion-->
+                            <Image Source="{Binding ImageSource}" HeightRequest="40"/>
+                            <!--<CheckBox/>-->
+                            <Label Text="{Binding Text}" Padding="10" 
+                                   VerticalOptions="Start" FontSize="Medium"
+                                   HorizontalOptions="FillAndExpand"
+                                   TextColor="{DynamicResource TextColorDefault}"
+                                   LineBreakMode="NoWrap">
+                            </Label>
+                            <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TappedCommand}"
+                                                          CommandParameter="{Binding .FullPath}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <!--#endregion-->
+    </ContentPage.Content>
+</ContentPage>

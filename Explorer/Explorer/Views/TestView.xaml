@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Explorer.Views.TestView">
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="12*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" Orientation="Horizontal">
+                <ScrollView  Orientation="Horizontal">
+                    <StackLayout>
+                        <Button Text="bxxxx" FontSize="50" VerticalOptions="Center"
+                                HorizontalOptions="Center" BackgroundColor="#555"
+                                BorderWidth="0" Padding="0,0,0,0"/>
+                    </StackLayout>
+                </ScrollView>
+                <Label Text="X" HorizontalOptions="EndAndExpand" FontSize="40" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" BackgroundColor="Maroon">
+                <Image Source="icons\capture.png"/>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

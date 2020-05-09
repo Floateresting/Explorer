@@ -1,17 +1,12 @@
-﻿using System;
+﻿using Explorer.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Explorer.Services;
-using Explorer.Views;
 
 namespace Explorer {
     public partial class App : Application {
 
         public App() {
-            InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            this.InitializeComponent();
+            this.MainPage = new MainPage();
         }
 
         protected override void OnStart() {
